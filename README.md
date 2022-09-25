@@ -93,13 +93,13 @@ let virtualMachine = function(program) {
 
      switch (currentInstruction) {
 
-        case "PUSH":
+        case "PUSH": //Dispatching
             stack[stackPointer] = program[programCounter+1];
             stackPointer++;
             programCounter++;
             break;
 
-        case "ADD":
+        case "ADD": //Dispatching
             right = stack[stackPointer-1]
             stackPointer--;
             left = stack[stackPointer-1]
@@ -108,7 +108,7 @@ let virtualMachine = function(program) {
             stackPointer++;
             break;
 
-        case "MINUS":
+        case "MINUS": //Dispatching
             right = stack[stackPointer-1]
             stackPointer--;
             left = stack[stackPointer-1]
@@ -170,3 +170,7 @@ A stack machine and a matching compiler are said to be easier to build. The mach
 Building a register machine is more work, because the registers are an addition; it still has a stack. It's not as prominent as in a stack machine, but it's still necessary to implement a call stack. 
 
 *The advantage of a register machine is that its instructions can make use of the registers and are thus much denser compared to their stack counterparts.*
+
+> Generally speaking, a program needs less instructions on a register machine than on a stack machine. That in turn results in better performance. But then again, writing the compiler that produces such dense instructions takes more effort. 
+
+> Dispatching in a virtual machine means selecting an implementation for an instruction before executing it.
