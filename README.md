@@ -75,3 +75,49 @@ A stack register is a CPU's register whose purpose is to keep track of a call st
 > a virtual machine is a computer built with software. It's a software entity that mimics how a computer works.
 
 A virtual machine has a run loop that goes through the fetch-decode-execute cycle, just like a computer. It has a program counter; it fetches instructions; it decodes and executes them. It also has a stack, just like a real computer. Sometimes it has a call stack and sometimes even registers. All built in software.
+
+
+## Virtual Machine explanation using javascript code:
+
+```js
+let virtualMachine = function(program) {
+
+let programCounter = 0;
+let stack = [];
+let stackPointer = 0;
+
+while (programCounter < program.length) {
+
+    let currentInstruction = program[programCounter];
+
+    switch (currentInstruction) {
+        case PUSH:
+            stack[stackPointer] = program[programCounter+1];
+            stackPointer++;
+            programCounter++;
+            break;
+        case ADD:
+            right = stack[stackPointer-1]
+            stackPointer--;
+            left = stack[stackPointer-1]
+            stackPointer--;
+            stack[stackPointer] = left + right;
+            stackPointer++;
+            break;
+        case MINUS:
+            right = stack[stackPointer-1]
+            stackPointer--;
+            left = stack[stackPointer-1]
+            stackPointer--;
+            stack[stackPointer] = left - right;
+            stackPointer++;
+            break;
+    }
+
+    programCounter++;
+    }
+
+    console.log("stacktop: ", stack[stackPointer-1]);
+
+}
+```
