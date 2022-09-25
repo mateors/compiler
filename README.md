@@ -92,13 +92,13 @@ let virtualMachine = function(program) {
 
      switch (currentInstruction) {
 
-        case PUSH:
+        case "PUSH":
             stack[stackPointer] = program[programCounter+1];
             stackPointer++;
             programCounter++;
             break;
 
-        case ADD:
+        case "ADD":
             right = stack[stackPointer-1]
             stackPointer--;
             left = stack[stackPointer-1]
@@ -107,7 +107,7 @@ let virtualMachine = function(program) {
             stackPointer++;
             break;
 
-        case MINUS:
+        case "MINUS":
             right = stack[stackPointer-1]
             stackPointer--;
             left = stack[stackPointer-1]
@@ -125,4 +125,29 @@ let virtualMachine = function(program) {
   console.log("stacktop: ", stack[stackPointer-1]);
 
 }
+
+let program = ["PUSH",3,"PUSH",4,"ADD","PUSH",5,"MINUS"];
+
+```
+We can build a program for it and execute it like this:
+
+```js
+let program = [ "PUSH", 3,
+                "PUSH", 4,
+                "ADD",
+                "PUSH", 5,
+                "MINUS"
+              ];
+
+virtualMachine(program);
+
+```
+
+> the expression encoded in above instructions? It’s this:
+
+`(3 + 4) - 5`
+
+### Output
+```
+stacktop: 2
 ```
