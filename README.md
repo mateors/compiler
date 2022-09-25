@@ -82,20 +82,22 @@ A virtual machine has a run loop that goes through the fetch-decode-execute cycl
 ```js
 let virtualMachine = function(program) {
 
-let programCounter = 0;
-let stack = [];
-let stackPointer = 0;
+  let programCounter = 0;
+  let stack = [];
+  let stackPointer = 0;
 
-while (programCounter < program.length) {
+  while (programCounter < program.length) {
 
     let currentInstruction = program[programCounter];
 
-    switch (currentInstruction) {
+     switch (currentInstruction) {
+
         case PUSH:
             stack[stackPointer] = program[programCounter+1];
             stackPointer++;
             programCounter++;
             break;
+
         case ADD:
             right = stack[stackPointer-1]
             stackPointer--;
@@ -104,6 +106,7 @@ while (programCounter < program.length) {
             stack[stackPointer] = left + right;
             stackPointer++;
             break;
+
         case MINUS:
             right = stack[stackPointer-1]
             stackPointer--;
@@ -112,12 +115,14 @@ while (programCounter < program.length) {
             stack[stackPointer] = left - right;
             stackPointer++;
             break;
-    }
 
-    programCounter++;
-    }
+     }
 
-    console.log("stacktop: ", stack[stackPointer-1]);
+     programCounter++;
+
+  }
+
+  console.log("stacktop: ", stack[stackPointer-1]);
 
 }
 ```
