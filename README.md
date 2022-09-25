@@ -78,6 +78,7 @@ A virtual machine has a run loop that goes through the fetch-decode-execute cycl
 
 
 ## Virtual Machine explanation using javascript code:
+It is a virtual machine that takes a program and runs it.
 
 ```js
 let virtualMachine = function(program) {
