@@ -167,4 +167,6 @@ A stack machine and a matching compiler are said to be easier to build. The mach
 *The problem is that you need to execute a lot of instructions, because you need to push and pop everything on and off the stack in order to get anything done.*
 
 ### Register Machine
-Building a register machine is more work, because the registers are an addition; it still has a stack. It's not as prominent as in a stack machine, but it's still necessary to implement a call stack. *The advantage of a register machine is that its instructions can make use of the registers and are thus much denser compared to their stack counterparts.*
+Building a register machine is more work, because the registers are an addition; it still has a stack. It's not as prominent as in a stack machine, but it's still necessary to implement a call stack. 
+
+*The advantage of a register machine is that its instructions can make use of the registers and are thus much denser compared to their stack counterparts.*
