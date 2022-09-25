@@ -152,3 +152,19 @@ virtualMachine(program);
 ```
 stacktop: 2
 ```
+
+## Virtual Machine Design decisions
+You can write a virtual machine in around 50 lines of code, like we just did, but also in 50 thousand lines or more. And going from here to there means making all kinds of choices regarding functionality and performance.
+
+One of the most significant design decisions is whether the machine will be `a stack machine` or `a register machine`. It's so significant that virtual machines are grouped based on this architectural choice, just like programming languages are sorted into "compiled" or "interpreted"
+
+### What is the difference between a stack & a register ?
+> The difference between a stack and a register machine is whether the machine uses a stack to do its computations or registers (virtual machine)
+
+### Stack Machine
+A stack machine and a matching compiler are said to be easier to build. The machine needs fewer parts and the instructions it executes are simpler, since they “only” make use of the stack.
+
+*The problem is that you need to execute a lot of instructions, because you need to push and pop everything on and off the stack in order to get anything done.*
+
+### Register Machine
+Building a register machine is more work, because the registers are an addition; it still has a stack. It's not as prominent as in a stack machine, but it's still necessary to implement a call stack. *The advantage of a register machine is that its instructions can make use of the registers and are thus much denser compared to their stack counterparts.*
