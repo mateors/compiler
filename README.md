@@ -222,3 +222,11 @@ Bytecode is a domain-specific language for a domain-specific machine. It’s the
 
 ## Keywords need to learn
 * `instruction set of a general-purpose x86-64 CPU`
+
+## What we are going to build?
+1. Virtual machine
+2. Matching compiler
+
+> Virtual machine supports a tiny number of instructions
+
+> Matching compiler that only knows how to output these instructions.
