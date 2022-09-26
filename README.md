@@ -2,11 +2,12 @@
 
 ### Vocabulary
 * immerse yourself = নিজেকে নিবিষ্ট
-* intimidating
+* intimidating = 
 * speculations = অনুমান
 * insurmountable = অনতিক্রম্য
 * vague = অস্পষ্ট
 * riddle =  ধাঁধা
+* prelude = ভূমিকা
 
 ## What we will learn?
 We are going to turn our tree-walking and on-the-fly-evaluating interpreter into a bytecode compiler and a virtual machine that executes the bytecode.
@@ -247,3 +248,5 @@ At the end of this chapter we would be able to:
 
 ### What do we know about bytecode?
 It's made up of instructions. The instructions themselves are a series of bytes and a single instruction consists of an `opcode` and an `optional number of operands`. An opcode is exactly `one byte wide`, has an arbitrary but unique value and is the `first byte` in the instruction. 
+
+> go ​clean -modcache
