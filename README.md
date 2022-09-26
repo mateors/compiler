@@ -241,3 +241,6 @@ At the end of this chapter we would be able to:
 * Pass it to the newly-built `compiler`, which compiles it to `bytecode`
 * Take the `bytecode` and hand it over to the newly-built `virtual machine` which will execute it
 * Make sure that the `virtual machine` produces the correct output **3**.
+
+### Quick look
+![quick look](./screens/3_at_a_glance.png)
