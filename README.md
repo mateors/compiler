@@ -174,3 +174,51 @@ Building a register machine is more work, because the registers are an addition;
 > Generally speaking, a program needs less instructions on a register machine than on a stack machine. That in turn results in better performance. But then again, writing the compiler that produces such dense instructions takes more effort. 
 
 > Dispatching in a virtual machine means selecting an implementation for an instruction before executing it.
+
+
+> Virtual machines are domain specific. That's what makes them different from their non-virtual counterparts. Computers offer us a universal
+solution to all of our computational needs and are decidedly not domain specific. 
+
+A virtual machine is like a custom-built computer. It has custom parts and a custom machine language. It’s tuned to a single programming language. All the unneeded features are stripped off and what’s left is highly specialized.
+
+### BYTECODE
+> What exactly do virtual machines execute?
+
+Virtual machines execute bytecode. Like the machine code that computers execute, bytecode is made up of instructions that tell the machine what to do. Push this, pop that, add these, call this function. It’s called bytecode because the opcodes contained in each instruction are one
+byte in size.
+
+### OPCODE
+An `opcode` is the `operator` part of an instruction, sometimes also called `op`. The `PUSH` we've seen earlier is such an opcode.
+
+### operands
+arguments or parameters. Some opcodes have multiple operands, some just one and some don’t have any at all
+
+### mnemonics
+> names, like PUSH or POP, are called mnemonics
+
+![bytecode](./screens/1_bytecode.png)
+
+*bytecode is a binary format and not nearly as readable. Meaning that you can't read it like a text file*
+
+### Bytecode Order 
+There are two possible orders:
+
+1. little endian and 
+2. big endian. 
+
+> Little endian means that the least significant byte of the original data comes first and is stored in the lowest memory address. 
+
+> Big endian is the opposite: the most significant byte comes first.
+
+![bytecode_order](./screens/2_bytecode_order.png)
+
+### Assemblers
+> Assemblers are taking a human-readable representation of bytecode and turning it into binary data.
+
+> `Assembly language` is the readable version of the `bytecode`, containing `mnemonics` and readable `operands`, and an assembler turns
+it into binary `bytecode`. The reverse, transforming the `binary representation` into a `readable representation`, is done by `disassemblers`.
+
+Bytecode is a domain-specific language for a domain-specific machine. It’s the bespoke machine language for the custom-built virtual machine
+
+## Keywords need to learn
+* `instruction set of a general-purpose x86-64 CPU`
