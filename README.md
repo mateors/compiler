@@ -244,3 +244,6 @@ At the end of this chapter we would be able to:
 
 ### Quick look | Birds eye view
 ![quick look](./screens/3_at_a_glance.png)
+
+### What do we know about bytecode?
+It's made up of instructions. The instructions themselves are a series of bytes and a single instruction consists of an `opcode` and an `optional number of operands`. An opcode is exactly `one byte wide`, has an arbitrary but unique value and is the `first byte` in the instruction. 
