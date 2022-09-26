@@ -239,5 +239,5 @@ At the end of this chapter we would be able to:
 * Tokenize and parse it using our existing [lexer](https://github.com/mateors/lexer/tree/master/lexer), [token](https://github.com/mateors/lexer/tree/master/token) and [parser packages](https://github.com/mateors/lexer/tree/master/parser)
 * Take the resulting AST, whose nodes are defined in our [ast package](https://github.com/mateors/lexer/tree/master/ast)
 * Pass it to the newly-built compiler, which compiles it to `bytecode`
-* Take the `bytecode` and hand it over to the also newly-built `virtual machine` which will execute it
+* Take the `bytecode` and hand it over to the newly-built `virtual machine` which will execute it
 * Make sure that the `virtual machine` produces the correct output **3**.
