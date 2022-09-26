@@ -10,13 +10,15 @@ const (
 	OpConstant Opcode = iota
 )
 
-type Instructions []byte
+type 
+Instructions []byte
 
 type Opcode byte
 
-type Definition struct {
+// In case an operand needs multiple bytes to be accurately represented
+type Definition struct { //opcode definition | how many operands an opcode has
 	Name          string
-	OperandWidths []int
+	OperandWidths []int //contains the number of bytes each operand takes up
 }
 
 var definitions = map[Opcode]*Definition{
@@ -47,7 +49,7 @@ func Make(op Opcode, operands ...int) []byte {
 	instruction[0] = byte(op)
 	offset := 1
 	for i, o := range operands {
-		width := def.OperandWidths[i]
+		width := def.OperandWidths[i] //throws error if more than 1 operands at once
 		switch width {
 		case 2:
 			binary.BigEndian.PutUint16(instruction[offset:], uint16(o))

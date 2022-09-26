@@ -4,7 +4,9 @@ import (
 	"github.com/mateors/compiler/code"
 
 	"github.com/mateors/lexer/ast"
+	"github.com/mateors/lexer/lexer"
 	"github.com/mateors/lexer/object"
+	"github.com/mateors/lexer/parser"
 )
 
 type Compiler struct {
@@ -81,4 +83,16 @@ func (c *Compiler) addInstruction(ins []byte) int {
 	posNewInstruction := len(c.instructions)
 	c.instructions = append(c.instructions, ins...)
 	return posNewInstruction
+}
+
+func parse(input string) *ast.Program {
+	l := lexer.New(input)
+	p := parser.New(l)
+	return p.ParseProgram()
+}
+
+func Parser(input string) *ast.Program { //for test purpose only
+	l := lexer.New(input)
+	p := parser.New(l)
+	return p.ParseProgram()
 }

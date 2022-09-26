@@ -5,10 +5,7 @@ import (
 	"testing"
 
 	"github.com/mateors/compiler/code"
-	"github.com/mateors/lexer/ast"
-	"github.com/mateors/lexer/lexer"
 	"github.com/mateors/lexer/object"
-	"github.com/mateors/lexer/parser"
 )
 
 type compilerTestCase struct {
@@ -51,12 +48,6 @@ func runCompilerTests(t *testing.T, tests []compilerTestCase) {
 			t.Fatalf("testConstants failed: %s", err)
 		}
 	}
-}
-
-func parse(input string) *ast.Program {
-	l := lexer.New(input)
-	p := parser.New(l)
-	return p.ParseProgram()
 }
 
 func testInstructions(expected []code.Instructions, actual code.Instructions) error {
