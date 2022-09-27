@@ -10,8 +10,7 @@ const (
 	OpConstant Opcode = iota
 )
 
-type 
-Instructions []byte
+type Instructions []byte
 
 type Opcode byte
 
@@ -69,7 +68,7 @@ func (ins Instructions) String() string {
 			continue
 		}
 		operands, read := ReadOperands(def, ins[i+1:])
-		fmt.Fprintf(&out, "%04d %s\n", i, ins.fmtInstruction(def, operands))
+		fmt.Fprintf(&out, "%04d %s\n", i, ins.fmtInstruction(def, operands)) //0000 OpConstant 10 \n 0003 OpConstant 20
 		i += 1 + read
 	}
 	return out.String()
@@ -99,7 +98,7 @@ func (ins Instructions) fmtInstruction(def *Definition, operands []int) string {
 	}
 	switch operandCount {
 	case 1:
-		return fmt.Sprintf("%s %d", def.Name, operands[0])
+		return fmt.Sprintf("%s %d", def.Name, operands[0]) //OpConstant 20
 	}
 	return fmt.Sprintf("ERROR: unhandled operandCount for %s\n", def.Name)
 }

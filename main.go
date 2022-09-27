@@ -26,9 +26,6 @@ func main() {
 	// fmt.Println([]byte{byte(0), 255, 254})
 	// fmt.Println(math.Pow(2, 16)) //2--16
 
-	// instruction := code.Make(0, 65534)
-	// fmt.Println(instruction) //[0 255 254]
-
 	//fmt.Println(code.Make(0, 0)) //
 	//fmt.Println(code.Make(0, 1)) //
 
@@ -48,16 +45,23 @@ func main() {
 	// fmt.Println(bytecode.Constants)
 
 	multipleInstructions := code.Instructions{}
-	fmt.Println(multipleInstructions)
 	multipleInstructions = append(multipleInstructions, code.Make(code.OpConstant, 10)...)
 	multipleInstructions = append(multipleInstructions, code.Make(code.OpConstant, 20)...)
-	fmt.Println(multipleInstructions)
+	multipleInstructions = append(multipleInstructions, code.Make(code.OpConstant, 10)...)
+	fmt.Println("multipleInstructions:", multipleInstructions.String())
 
-	//singleInstruction := code.Instructions(code.Make(code.OpConstant, 3))
-	
-	//fmt.Println(singleInstruction.String())
+	//def, err := code.Lookup(0) //code.OpConstant = 0
+	def, err := code.Lookup(byte(code.Opcode(code.OpConstant)))
+	fmt.Println(err, def.Name, def.OperandWidths) // OpConstant [2]
 
-	//_, err := code.Lookup(2)
-	//fmt.Println(err) //opcode 2 undefined
+	//single instruction
+	instruction := code.Make(0, 266)
+	fmt.Println(instruction) //bytecode = [opcode operand] = [opcode, argbyte1 argbyt2] = [0 1 10]
+
+	fmt.Println("instruction[1:]", instruction[1:]) //operand = [argbyte1 argbyt2] = [1 10]
+	operandsRead, offset := code.ReadOperands(def, instruction[1:])
+	fmt.Println(operandsRead, offset) //[266] 2
+
+	fmt.Println("binary.BigEndian.Uint16:", binary.BigEndian.Uint16([]byte{1, 10})) //255+1+10 = 266
 
 }
