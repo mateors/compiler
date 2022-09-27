@@ -274,3 +274,4 @@ It's made up of instructions. The instructions themselves are a series of bytes 
 
 ## Reference
 * [In programming, what is a stack?](https://www.youtube.com/watch?v=tN8JqCk09xs)
+* [Lets Write A Virtual Machine](https://www.youtube.com/playlist?list=PL-oEujJyp0dc9-VIbd5IjG-RaKgqMQ4vE)
