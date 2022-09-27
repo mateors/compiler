@@ -27,7 +27,7 @@ We are going to turn our tree-walking and on-the-fly-evaluating interpreter into
 > a compiler that translates high-level languages to produce executables is just one special type of compiler
 
 
-### producing executables is just one variation of "translating source code".
+### Producing executables is just one variation of "translating source code".
 
 You see, compilers are fundamentally about translation, because translation is how they implement a programming language
 
@@ -38,11 +38,24 @@ They both have a frontend that reads in source code written in the source langua
 First, the source code is tokenized and parsed by the lexer and the parser. We’re familiar with this part from our interpreter. It’s called the frontend. The source code is turned from text into an AST.
 
 ## Von Neumann architecture
+a computer's memory contains not only data, but also programs, which are the CPU instructions that make up a program.
+
+> Specific areas of memory are used to store specific things.
+
+Dumb data, as in "the contents of a text file" or "the response of a HTTP request", goes in one region of memory. The instructions that make up a program are stored and accessed in another region, where the CPU can easily fetch them.
+
+Another region holds the static data that’s used by a program and yet another region is empty and uninitialized, but reserved so that it can be used by a program once it’s running. The instructions belonging to the operating system kernel have their own special region in memory.
+
+> Data and programs are both stored in memory. programs made up of instructions are just data too.
+
+> Instructions only become instructions once the CPU fetches them from memory, decodes them, and finds out that they are, in fact,
+proper instructions and then executes them.
+
+![von_model](./screens/von-neumann-architecture-gcse-ocr.png)
 
 In Von Neumann's model a computer has two central parts: a processing unit, which contains an arithmetic logic unit (ALU) and multiple processor registers, and a control unit with an instruction register and a program counter. Together they’re called the central processing unit,often shortened to CPU. Besides that, the computer also contains memory (RAM), mass storage (think: hard drive) and input/output devices (keyboard and display). CPU, memory, mass storage and I/O. Here’s a rough sketch of such a computer:
 
 Instructions only become instructions once the CPU fetches them from memory, decodes them, and finds out that they are, in fact, proper instructions and then executes them. 
-
 
 We have a memory region where the CPU accesses and stores data in a LIFO manner. It does this in order to implement a specialized version of a stack, called a call stack.
 
