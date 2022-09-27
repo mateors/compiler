@@ -71,9 +71,15 @@ Registers are part of the CPU and accessing them is much faster than accessing t
 ### call stack.
 It's the memory region that holds the stack.
 
+![memory_stack](./screens/memory_stack.png)
+
 It's a region in memory where data is managed in a last-in-first-out (LIFO) manner. The data in it grows and shrinks, you push elements on to the stack and later pop them off. Just like the stack data structure. But unlike this generic data structure, the stack is focused on one purpose: it's used to implement the call stack.
 
+![stack](./screens/stack.jpg)
+
 > We have a memory region where the CPU accesses and stores data in a LIFO manner. It does this in order to implement a specialized version of a stack, called a call stack.
+
+![call_stack](./screens/call_stack.png)
 
 ### Why does it need a call stack? 
 Because the CPU (or maybe: the programmer that wants the CPU to work as intended) needs to keep track of certain information in order to execute a program. The call stack helps with that. What information? First and foremost: which function is currently being executed and which instruction to execute next, once the current function is fully executed. This piece of information, which instruction to fetch after the current function, is called the return address. It’s where the CPU returns to after executing the current function.
