@@ -91,6 +91,8 @@ A stack pointer is a small register that stores the memory address of the last d
 
 A stack register is a CPU's register whose purpose is to keep track of a call stack. 
 
+![stack_pointer](./screens/stack_pointer.png)
+
 ## Virtual Machine
 > a virtual machine is a computer built with software. It's a software entity that mimics how a computer works.
 
@@ -269,3 +271,6 @@ At the end of this chapter we would be able to:
 It's made up of instructions. The instructions themselves are a series of bytes and a single instruction consists of an `opcode` and an `optional number of operands`. An opcode is exactly `one byte wide`, has an arbitrary but unique value and is the `first byte` in the instruction. 
 
 > go ​clean -modcache
+
+## Reference
+* [In programming, what is a stack?](https://www.youtube.com/watch?v=tN8JqCk09xs)
