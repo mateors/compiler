@@ -1,6 +1,9 @@
 package compiler
 
 import (
+	"fmt"
+	"reflect"
+
 	"github.com/mateors/compiler/code"
 
 	"github.com/mateors/lexer/ast"
@@ -23,6 +26,7 @@ func New() *Compiler {
 
 func (c *Compiler) Compile(node ast.Node) error {
 
+	fmt.Println("node", node, reflect.TypeOf(node).String())
 	switch node := node.(type) {
 
 	case *ast.Program:

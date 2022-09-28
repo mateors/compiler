@@ -3,8 +3,12 @@ package main
 import (
 	"encoding/binary"
 	"fmt"
+	"os"
+	"reflect"
 
 	"github.com/mateors/compiler/code"
+	"github.com/mateors/compiler/compiler"
+	"github.com/mateors/lexer/ast"
 )
 
 func operandOrderTest() {
@@ -20,6 +24,41 @@ func operandOrderTest() {
 	fmt.Println(instruction) //LittleEndian=[0 254 255], BigEndian= [0 255 254]
 }
 
+func TestC(node ast.Node) {
+
+	//fmt.Println("TestC:", reflect.TypeOf(node).String())
+	inter := reflect.TypeOf((*ast.Node)(nil)).Elem()
+	isNode := reflect.TypeOf(node).Implements(inter)
+	fmt.Println(reflect.TypeOf(node), "isNode:", isNode)
+
+	switch nd := node.(type) {
+
+	case *ast.Program:
+
+		for _, stm := range nd.Statements {
+
+			//fmt.Println("stm>", stm, reflect.TypeOf(stm)) //*ast.ExpressionStatement
+			TestC(stm)
+		}
+
+	case *ast.ExpressionStatement:
+		//fmt.Println("ExpressionStatement>", nd)
+		TestC(nd.Expression)
+
+	case *ast.InfixExpression:
+		//fmt.Println("InfixExpression>", nd.Operator, nd.Token)
+		TestC(nd.Left)
+		TestC(nd.Right)
+
+	case *ast.IntegerLiteral:
+		fmt.Println("IntegerLiteral>", nd.Token, nd.Value)
+
+	default:
+		fmt.Println("default", reflect.TypeOf(nd))
+
+	}
+}
+
 func main() {
 
 	// fmt.Println([]int{65534})
@@ -32,17 +71,33 @@ func main() {
 	//bs := code.Make(code.OpConstant, 65534)
 	//fmt.Println(bs)
 
-	// input := `1 + 2 + 3 + 4`
-	// program := compiler.Parser(input)
-	// compiler := compiler.New()
-	// err := compiler.Compile(program)
-	// if err != nil {
-	// 	//t.Fatalf("compiler error: %s", err)
-	// }
+	input := `1 + 2`
+	program := compiler.Parser(input)
+	//fmt.Println(program.Statements)
+	//fmt.Println(program.String())
+	//fmt.Println("TokenLiteral", program.TokenLiteral())
 
-	// bytecode := compiler.Bytecode()
-	// fmt.Println(bytecode.Instructions)
-	// fmt.Println(bytecode.Constants)
+	//check if program underlying type is ast.Node or not
+	//fmt.Println(reflect.TypeOf(program))
+	v, ok := interface{}(program).(ast.Node)
+	//fmt.Println(v, ok)
+	if ok {
+		TestC(v)
+
+	}
+	os.Exit(1)
+
+	compiler := compiler.New()
+
+	err := compiler.Compile(program)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	bytecode := compiler.Bytecode()
+	fmt.Println("Instructions:", bytecode.Instructions)
+	fmt.Println("Constants:", bytecode.Constants)
+	os.Exit(1)
 
 	multipleInstructions := code.Instructions{}
 	multipleInstructions = append(multipleInstructions, code.Make(code.OpConstant, 10)...)
